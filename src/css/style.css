@@ -139,19 +139,26 @@ nav a {
     border-radius: 50%;
 }
 
-.footer {
-    background-color: #d7a29b;
+footer {
+    background-color: #d7a29b;   /* rosa queimado */
     color: white;
     text-align: center;
     padding: 20px;
+    font-family: 'Modern Elegance Typeface', cursive;
 }
 
-.footer a {
+footer .social-icons a {
     color: white;
     margin: 0 10px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 24px;
+    transition: color 0.3s ease;
 }
+
+footer .social-icons a:hover {
+    color: #f4c3bd;  /* rosa claro no hover */
+}
+
 
 /* Botões de quantidade + e - */
 .botao-quantidade {
