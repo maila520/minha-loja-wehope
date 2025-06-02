@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WeHope Acessórios</title>
+    <link rel="stylesheet" href="src/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maharlika&family=Modern+Elegance+Typeface&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- Ícone flutuante do carrinho -->
+    <button id="abrir-carrinho" class="carrinho-flutuante" aria-label="Abrir Carrinho">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="contador-carrinho">0</span>
+    </button>
+
+    <header>
+        <div class="welcome">
+            <h1>Bem-vindo ao <span>WeHope Acessórios</span></h1>
+        </div>
+        <nav class="d-flex justify-content-around py-2"
+            style="background-color: #f4c3bd; border-bottom: 2px solid #d7a29b;">
+            <a href="#promocoes" data-category="promocoes"
+                style="color: #b09896; font-weight: bold; text-decoration: none;">Promoções</a>
+            <a href="#colares" data-category="colares"
+                style="color: #b09896; font-weight: bold; text-decoration: none;">Colares</a>
+            <a href="#infantil" data-category="infantil"
+                style="color: #b09896; font-weight: bold; text-decoration: none;">Conjunto Infantil</a>
+            <a href="#adulto" data-category="adulto"
+                style="color: #b09896; font-weight: bold; text-decoration: none;">Conjunto Adulto</a>
+            <a href="#tornozeleira" data-category="tornozeleira"
+                style="color: #b09896; font-weight: bold; text-decoration: none;">Tornozeleira</a>
+            <a href="#pulseira" data-category="pulseira"
+                style="color: #b09896; font-weight: bold; text-decoration: none;">Pulseira</a>
+            <a href="#brincos" data-category="brincos"
+                style="color: #b09896; font-weight: bold; text-decoration: none;">Brincos</a>
+        </nav>
+    </header>
+
+    <!-- Seções das categorias - todas começam ocultas -->
+    <section id="promocoes" style="display: none;"></section>
+    <section id="colares" style="display: none;"></section>
+    <section id="infantil" style="display: none;"></section>
+    <section id="adulto" style="display: none;"></section>
+    <section id="tornozeleira" style="display: none;"></section>
+    <section id="pulseira" style="display: none;"></section>
+    <section id="brincos" style="display: none;"></section>
+
+    <aside id="carrinho">
+        <h3>Carrinho</h3>
+        <div id="itens-carrinho" class="itens-carrinho"></div>
+        <button id="prosseguir-pagamento" class="btn btn-success mt-2">Prosseguir para Pagamento</button>
+        <p>Total: R$ <span id="total">0.00</span></p>
+        <button id="fechar-carrinho">Fechar</button>
+        <button id="finalizar-compra">Finalizar Compra</button>
+    </aside>
+
+    <div id="overlay-carrinho"></div>
+
+    <footer>
+        <p>Obrigado por escolher a WeHope Acessórios! 💖</p>
+        <div class="social-icons">
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5511999999999" target="_blank" aria-label="WhatsApp"><i
+                    class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="src/js/script.js"></script>
+</body>
+
+</html>
