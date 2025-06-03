@@ -1,24 +1,24 @@
+let metodoPagamentoSelecionado = null;
+
 const produtos = {
     "colares": [
         { id: 1, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 20,00.jpg" },
-        { id: 2, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 28,00.jpg" },
-        { id: 3, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 32,00.jpg" },
-        { id: 4, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 33,00.jpg" },
-        { id: 5, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 38,00.jpg" },
-        { id: 6, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 39,00.jpg" },
-        { id: 7, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 42,00.jpg" },
-        { id: 8, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 45,00.jpg" },
-        { id: 9, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 46,00.jpg" },
-        { id: 10, nome: "Colar Prata Fino", preco: 45.5, img: "assets/images/colares/R$ 46,00.jpg" }
+        { id: 2, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 32,00.jpg" },
+        { id: 3, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 33,00.jpg" },
+        { id: 4, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 38,00.jpg" },
+        { id: 5, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 42,00.jpg" },
+        { id: 6, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 45,00.jpg" },
+        { id: 7, nome: "Colar Dourado Elegante", preco: 60.00, img: "assets/images/colares/R$ 46,00.jpg" },
+
     ],
     "infantil": [
-        { id: 1, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/colares/R$ 40,00.jpg" },
-        { id: 2, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/colares/R$ 40,00(2).jpg" },
-        { id: 3, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/colares/R$ 40,00(3).jpg" },
-        { id: 4, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/colares/R$ 40,00(4).jpg" },
-        { id: 5, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/colares/R$ 40,00(5).jpg" },
-        { id: 6, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/colares/R$ 40,00(6).jpg" },
-        { id: 7, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/colares/R$ 40,00(7).jpg" },
+        { id: 1, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/conjunto_infantil/unicornio.jpg" },
+        { id: 2, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/conjunto_infantil/corrente.jpg" },
+        { id: 3, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/conjunto_infantil/brilho.jpg" },
+        { id: 4, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/conjunto_infantil/arco.jpg" },
+        { id: 5, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/conjunto_infantil/laco.jpg" },
+        { id: 6, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/conjunto_infantil/coracao.jpg" },
+        { id: 7, nome: "Conjunto Dourado Infatil", preco: 60.00, img: "assets/images/conjunto_infantil/estrela.jpg" },
     ],
     "pulseira": [
         { id: 4, nome: "Pulseira de Pérolas", preco: 39.9, img: "assets/images/colares/R$ 20,00.jpg" }
@@ -274,10 +274,10 @@ finalizarCompraBtn.addEventListener("click", () => {
             icon: "error",
             title: "Carrinho vazio!",
             text: "Você ainda não adicionou nenhum produto ao carrinho 💼",
-            background: "#fff8f6",           // fundo claro rosado
-            color: "#b09896",                // texto em tom suave
-            iconColor: "#d79991",            // ícone vermelho suave
-            confirmButtonColor: "#f4c3bd",   // botão rosa claro
+            background: "#fff8f6",
+            color: "#b09896",
+            iconColor: "#d79991",
+            confirmButtonColor: "#f4c3bd",
             confirmButtonText: "Ver produtos",
             footer: '<a style="color: #d79991;" href="#">Precisa de ajuda?</a>',
             customClass: {
@@ -285,30 +285,47 @@ finalizarCompraBtn.addEventListener("click", () => {
                 confirmButton: 'botao-confirmar'
             }
         });
-
-
         return;
     }
-    Swal.fire({
-        title: 'Compra finalizada com sucesso!',
-        text: 'Obrigado por comprar com a WeHope Acessórios 💖',
-        icon: 'success',
-        background: '#fff8f6',
-        color: '#b09896',
-        confirmButtonColor: '#f4c3bd',
-        confirmButtonText: 'Fechar',
-        iconColor: '#d7a29b',
-        customClass: {
-            title: 'titulo-sweetalert',
-            confirmButton: 'botao-confirmar'
-        }
+
+    if (!metodoPagamentoSelecionado) {
+        Swal.fire({
+            icon: "warning",
+            title: "Forma de pagamento não selecionada!",
+            text: "Por favor, escolha uma forma de pagamento antes de finalizar a compra.",
+            confirmButtonColor: "#f4c3bd"
+        });
+        return;
+    }
+
+    // Montar mensagem do pedido
+    let mensagem = "Olá, realizei um pedido pelo site WeHope Acessórios.%0A%0A*Produtos:*%0A";
+    let total = 0;
+
+    carrinho.forEach(item => {
+        mensagem += `- ${item.nome} (x${item.quantidade})%0A`;
+        total += item.preco * item.quantidade;
     });
 
+    mensagem += `%0A*Total:* ${formatarPreco(total)}%0A`;
+    mensagem += `*Forma de pagamento:* ${metodoPagamentoSelecionado}%0A`;
+    mensagem += `%0AGostaria de confirmar o pedido.`;
+
+    // Número de telefone formatado sem espaços ou símbolos
+    const numeroWhatsApp = "5571985130412";
+
+    // Redireciona para o WhatsApp
+    const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+    window.open(url, "_blank");
+
+    // Limpa carrinho
     carrinho = [];
+    metodoPagamentoSelecionado = null;
     atualizarCarrinho();
     carrinhoElemento.style.display = "none";
     overlayCarrinho.style.display = "none";
 });
+
 
 document.getElementById("prosseguir-pagamento").addEventListener("click", () => {
     if (carrinho.length === 0) {
@@ -326,16 +343,13 @@ document.getElementById("prosseguir-pagamento").addEventListener("click", () => 
         html: `
             <div style="display: flex; justify-content: center; gap: 20px;">
                 <button class="btn btn-light pagamento" data-metodo="PIX">
-                    <img src="assets/icons/pix.png" alt="PIX" style="width: 40px;"><br>PIX
-                </button>
-                <button class="btn btn-light pagamento" data-metodo="Boleto">
-                    <img src="assets/icons/boleto.png" alt="Boleto" style="width: 40px;"><br>Boleto
+                    <img src="assets/images/pix.png" alt="PIX" style="width: 40px;"><br>PIX
                 </button>
                 <button class="btn btn-light pagamento" data-metodo="Cartão de Crédito">
-                    <img src="assets/icons/credito.png" alt="Crédito" style="width: 40px;"><br>Crédito
+                    <img src="assets/images/cartaoDebito.png" alt="Cartão de Credito" style="width: 40px;"><br>Credito
                 </button>
                 <button class="btn btn-light pagamento" data-metodo="Cartão de Débito">
-                    <img src="assets/icons/debito.png" alt="Débito" style="width: 40px;"><br>Débito
+                    <img src="assets/images/cartaoDebito.png" alt="Cartão de Credito" style="width: 40px;"><br>Débito
                 </button>
             </div>
         `,
@@ -344,18 +358,62 @@ document.getElementById("prosseguir-pagamento").addEventListener("click", () => 
             document.querySelectorAll(".pagamento").forEach(btn => {
                 btn.onclick = () => {
                     const metodo = btn.dataset.metodo;
+                    metodoPagamentoSelecionado = metodo;
+
                     Swal.fire({
-                        title: "Compra finalizada com sucesso!",
-                        text: `Método de pagamento: ${metodo}`,
-                        icon: "success",
-                        confirmButtonColor: "#f4c3bd"
+                        title: "Dados para entrega",
+                        html: `
+            <input type="text" id="nomeCliente" class="swal2-input" placeholder="Seu nome e sobrenome">
+            <input type="text" id="enderecoCliente" class="swal2-input" placeholder="Endereço completo com CEP">
+        `,
+                        confirmButtonText: "Finalizar Pedido",
+                        confirmButtonColor: "#f4c3bd",
+                        focusConfirm: false,
+                        preConfirm: () => {
+                            const nome = document.getElementById("nomeCliente").value.trim();
+                            const endereco = document.getElementById("enderecoCliente").value.trim();
+
+                            if (!nome || !endereco) {
+                                Swal.showValidationMessage("Por favor, preencha todos os campos");
+                                return false;
+                            }
+
+                            return { nome, endereco };
+                        }
+                    }).then(result => {
+                        if (result.isConfirmed) {
+                            const nome = result.value.nome;
+                            const endereco = result.value.endereco;
+
+                            // Montar mensagem do pedido
+                            let mensagem = `Olá, realizei um pedido pelo site WeHope Acessórios.%0A%0A*Nome:* ${nome}%0A*Endereço:* ${endereco}%0A%0A*Produtos:*%0A`;
+                            let total = 0;
+
+                            carrinho.forEach(item => {
+                                mensagem += `- ${item.nome} (x${item.quantidade})%0A`;
+                                total += item.preco * item.quantidade;
+                            });
+
+                            mensagem += `%0A*Total:* ${formatarPreco(total)}%0A`;
+                            mensagem += `*Forma de pagamento:* ${metodoPagamentoSelecionado}%0A`;
+                            mensagem += `%0AGostaria de confirmar o pedido.`;
+
+                            const numeroWhatsApp = "5571985130412";
+                            const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+                            window.open(url, "_blank");
+
+                            // Limpar carrinho
+                            carrinho = [];
+                            metodoPagamentoSelecionado = null;
+                            atualizarCarrinho();
+                            carrinhoElemento.style.display = "none";
+                            overlayCarrinho.style.display = "none";
+                        }
                     });
-                    carrinho = [];
-                    atualizarCarrinho();
-                    fecharCarrinho();
                 };
             });
         }
     });
 });
+
 

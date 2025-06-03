@@ -8,6 +8,7 @@
    Rosado claro:  #eaddd8
 */
 
+/* ===== RESET E CONFIGURAÇÕES GERAIS ===== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -22,7 +23,7 @@ body {
     color: #5a4a47;
 }
 
-/* Header Elegante */
+/* ===== HEADER ===== */
 header {
     background-color: #d7a29b;
     box-shadow: 0 4px 20px rgba(215, 162, 155, 0.3);
@@ -53,11 +54,16 @@ header {
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Navegação Refinada */
+/* ===== NAVEGAÇÃO ===== */
 nav {
     background-color: #f4c3bd;
     border-bottom: 2px solid #d7a29b;
     padding: 15px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 nav a {
@@ -95,18 +101,19 @@ nav a:hover::before {
     width: 80%;
 }
 
-/* Mostruário dos Produtos - Centralizados */
+/* ===== MOSTRUÁRIO DOS PRODUTOS - 4 CARDS POR LINHA ===== */
 .mostruario {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
     padding: 40px 20px;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
+    justify-items: center;
+    align-items: start;
 }
 
+/* ===== CARDS DOS PRODUTOS ===== */
 .produto {  
     background-color: white;
     border-radius: 15px;
@@ -115,9 +122,14 @@ nav a:hover::before {
     box-shadow: 0 8px 25px rgba(215, 162, 155, 0.15);
     transition: all 0.3s ease;
     border: 1px solid #f4c3bd;
-    width: 280px;
-    max-width: 100%;
-    flex: 0 0 auto;
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 380px;
 }
 
 .produto::before {
@@ -129,6 +141,7 @@ nav a:hover::before {
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(244, 195, 189, 0.4), transparent);
     transition: left 0.5s ease;
+    z-index: 1;
 }
 
 .produto:hover::before {
@@ -141,18 +154,31 @@ nav a:hover::before {
     border-color: #d7a29b;
 }
 
+/* ===== IMAGENS DOS PRODUTOS ===== */
 .produto img {
     width: 180px;
     height: 180px;
     object-fit: cover;
     border-radius: 15px;
-    margin-bottom: 15px;
+    margin: 0 auto 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .produto:hover img {
     transform: scale(1.05);
+}
+
+/* ===== CONTEÚDO DOS PRODUTOS ===== */
+.produto-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
 }
 
 .produto h3 {
@@ -162,6 +188,10 @@ nav a:hover::before {
     font-weight: 600;
     margin-bottom: 10px;
     letter-spacing: 0.5px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .produto p {
@@ -185,6 +215,7 @@ nav a:hover::before {
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 4px 15px rgba(244, 195, 189, 0.3);
+    margin-top: auto;
 }
 
 .produto button:hover {
@@ -193,7 +224,7 @@ nav a:hover::before {
     background-color: #d7a29b;
 }
 
-/* Carrinho Elegante */
+/* ===== CARRINHO ===== */
 #carrinho {
     position: fixed;
     top: 50%;
@@ -254,7 +285,7 @@ nav a:hover::before {
     z-index: 900;
 }
 
-/* Botão flutuante do carrinho */
+/* ===== BOTÃO FLUTUANTE DO CARRINHO ===== */
 .carrinho-flutuante {
     position: fixed;
     bottom: 30px;
@@ -298,7 +329,7 @@ nav a:hover::before {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Botões de quantidade refinados */
+/* ===== BOTÕES DE QUANTIDADE ===== */
 .botao-quantidade {
     background-color: #f4c3bd;
     color: white;
@@ -361,7 +392,7 @@ nav a:hover::before {
     background-color: #b09896;
 }
 
-/* Rodapé Elegante e Profissional */
+/* ===== RODAPÉ ===== */
 footer {
     background-color: #d7a29b;
     color: white;
@@ -409,8 +440,48 @@ footer .social-icons a:hover {
     border-color: #eaddd8;
 }
 
-/* Responsividade */
+/* ===== RESPONSIVIDADE ===== */
+/* Telas grandes (Desktop) - 4 cards por linha */
 @media (max-width: 768px) {
+    .mostruario {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 30px;
+        padding: 40px 20px;
+    }
+}
+
+/* Telas médias (Laptop/Tablet horizontal) - 3 cards por linha */
+@media (max-width: 1199px) and (min-width: 900px) {
+    .mostruario {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        padding: 35px 15px;
+    }
+}
+
+/* Tablets verticais - 2 cards por linha */
+@media (max-width: 899px) and (min-width: 600px) {
+    .mostruario {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 30px 15px;
+    }
+    
+    .produto {
+        max-width: 100%;
+    }
+    
+    .welcome h1 {
+        font-size: 2.2rem;
+    }
+    
+    .welcome h1 span {
+        font-size: 2.4rem;
+    }
+}
+
+/* Mobile - 1 card por linha */
+@media (max-width: 599px) {
     .welcome h1 {
         font-size: 2rem;
     }
@@ -422,21 +493,34 @@ footer .social-icons a:hover {
     nav {
         flex-direction: column;
         gap: 10px;
+        padding: 10px;
     }
     
     .mostruario {
+        grid-template-columns: 1fr;
         padding: 20px 10px;
+        gap: 20px;
     }
     
     .produto {
+        max-width: 100%;
         width: 100%;
-        max-width: 300px;
+        margin: 0;
     }
     
     #carrinho {
         width: 90%;
         right: 5%;
         left: 5%;
+        transform: translate(0, -50%);
+    }
+    
+    .carrinho-flutuante {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 20px;
     }
     
     footer .social-icons a {
@@ -446,7 +530,29 @@ footer .social-icons a:hover {
     }
 }
 
-/* Animações suaves */
+/* Mobile pequeno */
+@media (max-width: 480px) {
+    .produto {
+        padding: 20px;
+        min-height: 350px;
+    }
+    
+    .produto img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .produto h3 {
+        font-size: 1.2rem;
+        min-height: 50px;
+    }
+    
+    .produto p {
+        font-size: 1.1rem;
+    }
+}
+
+/* ===== ANIMAÇÕES ===== */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -462,7 +568,14 @@ footer .social-icons a:hover {
     animation: fadeInUp 0.6s ease-out;
 }
 
-/* Scrollbar personalizada */
+.produto:nth-child(1) { animation-delay: 0.1s; }
+.produto:nth-child(2) { animation-delay: 0.2s; }
+.produto:nth-child(3) { animation-delay: 0.3s; }
+.produto:nth-child(4) { animation-delay: 0.4s; }
+.produto:nth-child(5) { animation-delay: 0.5s; }
+.produto:nth-child(6) { animation-delay: 0.6s; }
+
+/* ===== SCROLLBAR PERSONALIZADA ===== */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -479,3 +592,4 @@ footer .social-icons a:hover {
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, #d7a29b, #c18d84);
 }
+
