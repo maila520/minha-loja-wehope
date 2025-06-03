@@ -363,30 +363,74 @@ document.getElementById("prosseguir-pagamento").addEventListener("click", () => 
                     Swal.fire({
                         title: "Dados para entrega",
                         html: `
-            <input type="text" id="nomeCliente" class="swal2-input" placeholder="Seu nome e sobrenome">
-            <input type="text" id="enderecoCliente" class="swal2-input" placeholder="Endereço completo com CEP">
+            <input type="text" id="nomeCliente" class="swal2-input" placeholder="Digite seu nome">
+            <input type="text" id="cep" class="swal2-input" placeholder="CEP">
+
+             <input type="text" id="logradouro" class="swal2-input" placeholder="Logradouro" style="display: none;">
+            <input type="text" id="bairro" class="swal2-input" placeholder="Bairro" style="display: none;">
+            <input type="text" id="cidade" class="swal2-input" placeholder="Cidade" style="display: none;">
+            <input type="text" id="estado" class="swal2-input" placeholder="Estado" style="display: none;">
+  
         `,
                         confirmButtonText: "Finalizar Pedido",
                         confirmButtonColor: "#f4c3bd",
                         focusConfirm: false,
+                        didOpen: () => {
+                            $('#cep').on('blur', function () {
+                                const cep = $(this).val().replace(/\D/g, '');
+
+                                if (cep.length === 8) {
+                                    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                                        .then(response => response.json())
+                                        .then(dados => {
+                                            if (dados.erro) {
+                                                Swal.showValidationMessage('CEP não encontrado.');
+                                                return;
+                                            }
+
+                                            $('#logradouro').val(dados.logradouro).show();
+                                            $('#bairro').val(dados.bairro).show();
+                                            $('#cidade').val(dados.localidade).show();
+                                            $('#estado').val(dados.uf).show();
+                                        })
+                                        .catch(error => {
+                                            console.error(error);
+                                            Swal.showValidationMessage('Erro ao buscar o CEP.');
+                                        });
+                                } else {
+                                    alert('CEP inválido. Digite os 8 números corretamente.');
+                                }
+                            });
+                        },
+
                         preConfirm: () => {
                             const nome = document.getElementById("nomeCliente").value.trim();
-                            const endereco = document.getElementById("enderecoCliente").value.trim();
+                            const logradouro = document.getElementById("logradouro").value.trim();
+                            const bairro = document.getElementById("bairro").value.trim();
+                            const cidade = document.getElementById("cidade").value.trim();
+                            const estado = document.getElementById("estado").value.trim();
 
-                            if (!nome || !endereco) {
+                            if (!nome || !logradouro || !bairro || !cidade || !estado) {
                                 Swal.showValidationMessage("Por favor, preencha todos os campos");
                                 return false;
                             }
 
-                            return { nome, endereco };
+                            return { nome, logradouro, bairro, cidade, estado };
                         }
                     }).then(result => {
                         if (result.isConfirmed) {
                             const nome = result.value.nome;
-                            const endereco = result.value.endereco;
+                            const logradouro = result.value.logradouro;
+                            const bairro = result.value.bairro;
+                            const cidade = result.value.cidade;
+                            const estado = result.value.estado;
+
 
                             // Montar mensagem do pedido
-                            let mensagem = `Olá, realizei um pedido pelo site WeHope Acessórios.%0A%0A*Nome:* ${nome}%0A*Endereço:* ${endereco}%0A%0A*Produtos:*%0A`;
+                            let mensagem = `Olá, realizei um pedido pelo site WeHope Acessórios.%0A%0A`;
+                            mensagem += `*Nome:* ${nome}%0A`;
+                            mensagem += `*Endereço:* ${logradouro}, ${bairro}, ${cidade} - ${estado}%0A%0A`;
+                            mensagem += `*Produtos:*%0A`;
                             let total = 0;
 
                             carrinho.forEach(item => {
@@ -415,5 +459,27 @@ document.getElementById("prosseguir-pagamento").addEventListener("click", () => 
         }
     });
 });
+async function buscarEnderecoPorCEP(cep) {
+    try {
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        if (!response.ok) {
+            throw new Error('Erro ao consultar o CEP');
+        }
+        const dados = await response.json();
+        if (dados.erro) {
+            alert('CEP não encontrado.');
+            return;
+        }
+        console.log(dados)
+        // Preencha os campos do formulário com os dados obtidos
+        document.getElementById('logradouro').value = dados.logradouro;
+        document.getElementById('bairro').value = dados.bairro;
+        document.getElementById('cidade').value = dados.localidade;
+        document.getElementById('estado').value = dados.uf;
+    } catch (error) {
+        console.error(error);
+        alert('Não foi possível buscar o endereço. Verifique o CEP e tente novamente.');
+    }
+}
 
 
