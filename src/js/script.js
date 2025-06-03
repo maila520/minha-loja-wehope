@@ -139,46 +139,48 @@ function atualizarCarrinho() {
         btn.onclick = () => {
             const id = parseInt(btn.dataset.id);
             const produto = carrinho.find(p => p.id === id);
+
             Swal.fire({
                 title: 'Deseja realmente apagar este produto?',
                 text: `"${produto.nome}" será removido do seu carrinho.`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#f4c3bd',   // rosa claro
-                cancelButtonColor: '#e0d3cf',    // bege rosado ou tom neutro suave
+                cancelButtonColor: '#e0d3cf',    // bege rosado
                 confirmButtonText: 'Sim, apagar',
                 cancelButtonText: 'Cancelar',
                 background: '#fff8f6',           // fundo rosado claro
                 color: '#b09896',                // texto suave
-                iconColor: '#d7a29b',            // ícone dourado/rosado
+                iconColor: '#d7a29b',            // ícone rosado
                 customClass: {
                     title: 'titulo-sweetalert',
                     confirmButton: 'botao-confirmar',
                     cancelButton: 'botao-cancelar'
                 }
-            }); then((result) => {
+            }).then((result) => { // <-- aqui está o ponto correto
                 if (result.isConfirmed) {
                     carrinho = carrinho.filter(p => p.id !== id);
                     atualizarCarrinho();
+
                     Swal.fire({
                         title: 'Produto removido!',
                         text: `"${produto.nome}" foi excluído do carrinho.`,
                         icon: 'success',
-                        background: '#fff8f6',         // fundo rosado claro
-                        color: '#b09896',              // cor do texto suave
-                        confirmButtonColor: '#f4c3bd', // botão rosa claro
-                        iconColor: '#d7a29b',          // ícone rosa médio
+                        background: '#fff8f6',
+                        color: '#b09896',
+                        confirmButtonColor: '#f4c3bd',
+                        iconColor: '#d7a29b',
                         confirmButtonText: 'OK',
                         customClass: {
                             title: 'titulo-sweetalert',
                             confirmButton: 'botao-confirmar'
                         }
                     });
-
                 }
             });
         };
     });
+
 
 }
 
