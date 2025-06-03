@@ -593,3 +593,48 @@ footer .social-icons a:hover {
     background: linear-gradient(135deg, #d7a29b, #c18d84);
 }
 
+----------------------------
+
+
+
+/* Esconde o menu padrão em telas pequenas */
+nav {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    nav {
+        display: none;
+        flex-direction: column;
+        background-color: #f4c3bd;
+        position: absolute;
+        top: 60px;
+        width: 100%;
+        left: 0;
+        z-index: 1000;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    nav.show {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        color: #b09896;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        z-index: 1100;
+    }
+}
+
+/* Exibe o botão de menu apenas em telas pequenas */
+.menu-toggle {
+    display: none;
+}

@@ -483,3 +483,11 @@ async function buscarEnderecoPorCEP(cep) {
 }
 
 
+document.getElementById("menu-links").addEventListener("click", () => {
+    const menu = document.getElementById("menu");
+    menu.classList.toggle("hidden");
+});
+
+
+
+
