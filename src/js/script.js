@@ -481,13 +481,25 @@ async function buscarEnderecoPorCEP(cep) {
         alert('Não foi possível buscar o endereço. Verifique o CEP e tente novamente.');
     }
 }
+document.addEventListener('DOMContentLoaded', function () {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuLinks = document.querySelector('.menu-links');
 
+    if (mobileMenu && menuLinks) {
+        mobileMenu.addEventListener('click', function () {
+            this.classList.toggle('active');
+            menuLinks.classList.toggle('show');
+        });
 
-document.getElementById("menu-links").addEventListener("click", () => {
-    const menu = document.getElementById("menu");
-    menu.classList.toggle("hidden");
+        // Fechar menu ao clicar em um link
+        const links = menuLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuLinks.classList.remove('show');
+            });
+        });
+    }
 });
-
-
 
 

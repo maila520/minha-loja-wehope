@@ -24,12 +24,18 @@
 
     <header>
 
+
         <div class="welcome">
             <h1>Bem-vindo ao <span>WeHope Acessórios</span></h1>
         </div>
 
-        <nav  id=" menu" class="menu-links"
-            style="background-color: #f4c3bd; border-bottom: 2px solid #d7a29b;">
+        <div class="mobile-menu" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="menu" class="menu-links" style="background-color: #f4c3bd; border-bottom: 2px solid #d7a29b;">
             <a href="#" data-category="promocoes"
                 style="color: #b09896; font-weight: bold; text-decoration: none;">Promoções</a>
             <a href="#" data-category="colares"
@@ -44,33 +50,34 @@
                 style="color: #b09896; font-weight: bold; text-decoration: none;">Pulseira</a>
             <a href="#" data-category="brincos"
                 style="color: #b09896; font-weight: bold; text-decoration: none;">Brincos</a>
+
         </nav>
     </header>
+    <main>
+        <!-- Seções das categorias - todas começam ocultas -->
+        <section id="promocoes" style="display: none;"></section>
+        <section id="colares" style="display: none;"></section>
+        <section id="infantil" style="display: none;"></section>
+        <section id="adulto" style="display: none;"></section>
+        <section id="tornozeleira" style="display: none;"></section>
+        <section id="pulseira" style="display: none;"></section>
+        <section id="brincos" style="display: none;"></section>
 
-    <!-- Seções das categorias - todas começam ocultas -->
-    <section id="promocoes" style="display: none;"></section>
-    <section id="colares" style="display: none;"></section>
-    <section id="infantil" style="display: none;"></section>
-    <section id="adulto" style="display: none;"></section>
-    <section id="tornozeleira" style="display: none;"></section>
-    <section id="pulseira" style="display: none;"></section>
-    <section id="brincos" style="display: none;"></section>
+        <aside id="carrinho">
+            <h3>Carrinho</h3>
+            <div id="itens-carrinho" class="itens-carrinho"></div>
+            <button id="prosseguir-pagamento" class="btn btn-success mt-2">Prosseguir para Pagamento</button>
+            <p>Total: R$ <span id="total">0.00</span></p>
+            <button id="fechar-carrinho">Fechar</button>
+            <div id="formulario-dados" style="display:none; margin-top: 1rem;">
+                <h3 style="color:#b09896; margin-bottom: 10px;">Dados para entrega:</h3>
+            </div>
 
-    <aside id="carrinho">
-        <h3>Carrinho</h3>
-        <div id="itens-carrinho" class="itens-carrinho"></div>
-        <button id="prosseguir-pagamento" class="btn btn-success mt-2">Prosseguir para Pagamento</button>
-        <p>Total: R$ <span id="total">0.00</span></p>
-        <button id="fechar-carrinho">Fechar</button>
-        <div id="formulario-dados" style="display:none; margin-top: 1rem;">
-            <h3 style="color:#b09896; margin-bottom: 10px;">Dados para entrega:</h3>
-        </div>
+            <button id="finalizar-compra">Finalizar Compra</button>
+        </aside>
 
-        <button id="finalizar-compra">Finalizar Compra</button>
-    </aside>
-
-    <div id="overlay-carrinho"></div>
-
+        <div id="overlay-carrinho"></div>
+    </main>
     <footer>
         <p>Obrigado por escolher a WeHope Acessórios! 💖</p>
         <div class="social-icons">
