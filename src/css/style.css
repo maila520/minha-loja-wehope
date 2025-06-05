@@ -10,14 +10,15 @@ body {
     background-color: #eaddd8;
     line-height: 1.6;
     color: #5a4a47;
-    display: flex; /* Transforma o body em um container flex */
-    flex-direction: column; /* Organiza os itens (header, main, footer) em uma coluna */
+    display: flex;
+    flex-direction: column;
     min-height: 100vh; 
 }
 
 main {
-    flex: 1; /* Isso faz com que o main ocupe todo o espaço restante disponível, empurrando o footer para baixo */
+    flex: 1;
 }
+
 /* ===== MOBILE FIRST APPROACH ===== */
 
 /* ===== HEADER ===== */
@@ -30,26 +31,29 @@ header {
 }
 
 .welcome {
-    padding: 15px 10px;
+    padding: 15px 60px 15px 15px; /* Deixa espaço à direita para o menu hambúrguer */
     text-align: center;
     position: relative;
 }
 
 .welcome h1 {
     font-family: 'Lora', serif;
-    font-size: 1.8rem;
+    font-size: 1.4rem; /* Reduzido para mobile */
     font-weight: 600;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    letter-spacing: 1px;
+    letter-spacing: 0.5px; /* Reduzido para mobile */
+    line-height: 1.2;
 }
 
 .welcome h1 span {
     font-family: 'Crimson Text', serif;
-    font-size: 2rem;
+    font-size: 1.6rem; /* Reduzido para mobile */
     font-weight: 700;
     color: #fff;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    display: block; /* Força quebra de linha */
+    margin-top: 5px;
 }
 
 /* ===== NAVEGAÇÃO MOBILE FIRST ===== */
@@ -60,16 +64,23 @@ nav {
     padding: 10px;
 }
 
-/* Botão hambúrguer - visível por padrão em mobile */
+/* Botão hambúrguer - posicionamento absoluto para não interferir no título */
 .mobile-menu {
     display: flex;
     flex-direction: column;
     cursor: pointer;
     position: absolute;
-    top: 15px;
+    top: 50%;
     right: 20px;
+    transform: translateY(-50%); /* Centraliza verticalmente */
     z-index: 1001;
-    padding: 5px;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-menu:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .mobile-menu span {
@@ -535,15 +546,21 @@ footer .social-icons a:active {
 /* ===== MEDIA QUERIES - TABLETS ===== */
 @media (min-width: 600px) {
     .welcome {
-        padding: 20px 15px;
+        padding: 20px 70px 20px 15px; /* Mais espaço para o menu hambúrguer */
     }
     
     .welcome h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .welcome h1 span {
-        font-size: 2.2rem;
+        font-size: 2rem;
+        display: inline; /* Volta para inline em tablets */
+        margin-top: 0;
+    }
+
+    .mobile-menu {
+        right: 25px;
     }
 
     .mostruario {
@@ -750,5 +767,31 @@ footer .social-icons a:active {
     
     .menu-links a:hover::before {
         width: 0;
+    }
+}
+
+/* ===== CORREÇÕES ESPECÍFICAS PARA MOBILE MUITO PEQUENO ===== */
+@media (max-width: 320px) {
+    .welcome h1 {
+        font-size: 1.2rem;
+    }
+
+    .welcome h1 span {
+        font-size: 1.4rem;
+    }
+
+    .welcome {
+        padding: 12px 50px 12px 10px;
+    }
+
+    .mobile-menu {
+        right: 10px;
+        width: 30px;
+        padding: 5px;
+    }
+
+    .mobile-menu span {
+        width: 20px;
+        height: 2px;
     }
 }
